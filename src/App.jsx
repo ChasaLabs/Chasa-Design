@@ -2,7 +2,6 @@ import { Routes, Route, Navigate } from "react-router-dom";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import Home from "./pages/Home";
-import Projects from "./pages/Projects";
 // About page removed; redirect route set to home
 import Contact from "./pages/Contact";
 import bg from "./assets/FeintDrawings.jpeg";
@@ -27,7 +26,7 @@ export default function App() {
       <main>
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/projects" element={<Projects />} />
+          <Route path="/projects" element={<Navigate to="/#concepts" replace />} />
           <Route path="/about" element={<Navigate to="/" replace />} />
           <Route path="/contact" element={<Contact />} />
         </Routes>

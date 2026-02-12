@@ -1,11 +1,10 @@
 import { useState, useEffect } from "react";
 import { NavLink } from "react-router-dom";
-import Container from "../components/Container";
-import logo from "../assets/ChasaLogo.jpg";
+import logo from "../assets/Chasa_Logo.svg";
 
-const linkBase = "text-white text-sm tracking-wide";
+const linkBase = "text-white text-sm tracking-wide drop-shadow-sm";
 const active = "text-white font-semibold";
-const idle = "text-white hover:text-neutral-200";
+const idle = "text-white hover:text-white/80";
 
 export default function Navbar() {
   const [isVisible, setIsVisible] = useState(true);
@@ -56,29 +55,31 @@ export default function Navbar() {
 
   return (
     <header
-      className={`fixed top-0 left-0 right-0 z-50 bg-black/30 backdrop-blur-sm transition-transform duration-300 ease-out ${
+      className={`fixed top-0 left-0 w-full z-50 bg-black/30 backdrop-blur-sm transition-transform duration-300 ease-out ${
         isVisible ? "translate-y-0" : "-translate-y-full"
       }`}
     >
-      <Container className="flex h-20 items-center justify-between">
+      <div className="w-full flex h-20 items-center px-6">
 
         {/* Left: logo */}
-        <div className="flex items-center">
+        <div className="flex items-center flex-shrink-0">
           <NavLink to="/" className="flex items-center">
-            <img src={logo} alt="Chasa logo" className="h-14 w-auto object-contain" />
+            <div className="h-[80px] w-[80px] rounded-full overflow-hidden flex items-center justify-center bg-white/5 p-1">
+              <img src={logo} alt="Chasa logo" className="max-h-[80px] max-w-[80px] object-contain" />
+            </div>
           </NavLink>
         </div>
 
-        {/* Right: links + site title, single flex container controls spacing */}
-        <div className="flex items-center gap-8">
-          <nav className="flex items-center gap-6">
-            <NavLink to="/projects" className={({ isActive }) => `${linkBase} ${isActive ? active : idle}`}>Projects</NavLink>
+        {/* Right: navigation links */}
+        <div className="ml-auto pr-8">
+          <nav className="flex items-center" style={{ gap: "2.5rem" }}>
             <NavLink to="/about" className={({ isActive }) => `${linkBase} ${isActive ? active : idle}`}>About</NavLink>
             <NavLink to="/contact" className={({ isActive }) => `${linkBase} ${isActive ? active : idle}`}>Contact</NavLink>
           </nav>
         </div>
 
-      </Container>
+
+      </div>
     </header>
 
   );
