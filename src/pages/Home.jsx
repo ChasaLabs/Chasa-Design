@@ -1,6 +1,7 @@
 // Install: npm install react-leaflet leaflet
 import { useEffect, useState } from "react";
 import Container from "../components/Container";
+import PurposeAccordionSplit from "../components/PurposeAccordionSplit";
 import { Link } from "react-router-dom";
 import { MapContainer, Marker, Popup, TileLayer } from "react-leaflet";
 import L from "leaflet";
@@ -108,6 +109,8 @@ export default function Home() {
         </Container>
       </section>
 
+      <PurposeAccordionSplit />
+
       {/* Concepts images (slideshow) */}
       <section id="concepts" className="py-16">
         <Container>
@@ -183,7 +186,7 @@ export default function Home() {
       <section id="contact-cta" className="border-t border-neutral-200 py-16">
         <Container>
           <div className="rounded-3xl border border-neutral-200 p-8 sm:p-12">
-            <h3 className="text-2xl font-semibold tracking-tight">Let’s talk about your project.</h3>
+            <h3 className="text-2xl font-semibold tracking-tight">Let's discuss your project.</h3>
             <p className="mt-3 text-neutral-600 max-w-2xl">
               Share your brief and we’ll respond with next steps and how we can help.
             </p>

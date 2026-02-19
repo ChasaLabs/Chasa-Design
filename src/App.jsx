@@ -10,6 +10,8 @@ export default function App() {
   return (
     <div className="min-h-screen text-neutral-900 font-sans">
       <div
+        id="app-background-layer"
+        data-default-bg={bg}
         aria-hidden
         style={{
           backgroundImage: `url(${bg})`,
@@ -17,6 +19,7 @@ export default function App() {
           backgroundPosition: "center",
           backgroundRepeat: "no-repeat",
           backgroundAttachment: "fixed",
+          transition: "background-image 300ms ease-out",
           position: "fixed",
           inset: 0,
           zIndex: -1,
