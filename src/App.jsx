@@ -8,7 +8,7 @@ import bg from "./assets/FeintDrawings.jpeg";
 
 export default function App() {
   return (
-    <div className="min-h-screen text-neutral-900 font-sans">
+    <div className="min-h-screen font-sans">
       <div
         id="app-background-layer"
         data-default-bg={bg}

@@ -112,7 +112,7 @@ export default function Home() {
       <PurposeAccordionSplit />
 
       {/* Concepts images (slideshow) */}
-      <section id="concepts" className="py-16">
+      <section id="concepts" className="pb-16 pt-20">
         <Container>
           <div className="mx-auto max-w-[30rem]">
             <div className="relative h-[360px] w-full overflow-hidden rounded-3xl sm:h-[440px]">

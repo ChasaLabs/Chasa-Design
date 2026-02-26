@@ -1,37 +1,41 @@
 import { useEffect, useRef, useState } from "react";
-import pc1 from "../assets/PC_1.jpeg";
-import pc2 from "../assets/PC_2.jpeg";
-import tl1 from "../assets/TL_1.jpeg";
-import krh1 from "../assets/KRH_1.jpeg";
+import movementBg from "../assets/Movement.png";
+import gatheringBg from "../assets/Gathering.png";
+import serviceBg from "../assets/Service.png";
+import dwellingBg from "../assets/Dwelling.png";
 
 const defaultItems = [
   {
     title: "Movement",
-    summary:
-      "Circulation is composed to feel intuitive and calm, using light and proportion to guide orientation with minimal noise.",
-    caption: "Sequenced space with clear transitions and calm flow.",
-    image: pc1,
+    lead:
+      "Designing circulation that feels intuitive — from arrival to threshold to destination.",
+    body:
+      "We shape movement through clear sightlines, deliberate sequencing, and spaces that reduce friction. Paths for pedestrians, vehicles, and service flow are resolved as one coordinated system, so the experience remains calm even under peak use. The result is architecture that guides without shouting.",
+    image: movementBg,
   },
   {
     title: "Gathering",
-    summary:
-      "Shared environments are shaped through scale, rhythm, and restraint so people and atmosphere define the experience.",
-    caption: "Collective spaces balanced for comfort and connection.",
-    image: pc2,
+    lead:
+      "Spaces that bring people together, with comfort, acoustics, and identity built in.",
+    body:
+      "Gathering needs more than floor area — it needs proportion, light, and a sense of orientation. We design places where connection happens naturally: entrances that welcome, edges that support lingering, and interiors that adapt to different moments. The atmosphere stays warm and legible, day or night.",
+    image: gatheringBg,
   },
   {
     title: "Service",
-    summary:
-      "Performance and operational needs are integrated early so technical clarity and architectural intent evolve together.",
-    caption: "Technical precision embedded within the architectural order.",
-    image: tl1,
+    lead:
+      "Clear, resilient environments where function is precise and dignity is preserved.",
+    body:
+      "Service spaces must work reliably, but they can also feel humane. We prioritize clarity of layout, safe access, and robust detailing — while using light, scale, and finish to create calm. The outcome is a place that performs under pressure and remains welcoming.",
+    image: serviceBg,
   },
   {
     title: "Dwelling",
-    summary:
-      "Daily routines are supported through measured enclosure, tactile materiality, and openings tuned to context.",
-    caption: "Quiet, durable environments for everyday living.",
-    image: krh1,
+    lead:
+      "Homes that balance privacy and community, with everyday life at the center.",
+    body:
+      "Dwelling is about rhythm: quiet spaces, shared spaces, and the transitions between them. We emphasize daylight, ventilation, and durable material choices that age gracefully. The architecture supports long-term comfort while still expressing a clean, modern character.",
+    image: dwellingBg,
   },
 ];
 
@@ -97,43 +101,67 @@ export default function PurposeAccordionSplit({ items = defaultItems }) {
   }, [activeItem]);
 
   return (
-    <section ref={sectionRef} className="w-full py-24">
+    <section
+      ref={sectionRef}
+      className="accordion-scope mb-24 w-full border-b border-white/10 py-24 pb-20"
+    >
       <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
         <div className="grid gap-10 items-start">
-          <div className="overflow-hidden rounded-2xl border border-neutral-200 bg-white/60 backdrop-blur">
-            {safeItems.map((item, index) => {
-              const isActive = index === activeIndex;
+          <div className="relative overflow-hidden rounded-3xl">
+            <div className="absolute inset-0 rounded-3xl bg-gradient-to-r from-black/70 via-black/40 to-transparent" />
+            <div className="relative z-10 overflow-hidden rounded-3xl border border-neutral-200 bg-black/20 backdrop-blur-sm">
+              {safeItems.map((item, index) => {
+                const isActive = index === activeIndex;
+                const rowAlignment = index % 2 === 0 ? "justify-start" : "justify-start md:justify-end";
 
-              return (
-                <div
-                  key={`${item.title}-${index}`}
-                  className={index !== safeItems.length - 1 ? "border-b border-neutral-200" : ""}
-                >
-                  <button
-                    type="button"
-                    aria-expanded={isActive}
-                    aria-controls={`purpose-panel-${index}`}
-                    onClick={() => setActiveIndex((prev) => (prev === index ? null : index))}
-                    className="flex w-full items-center justify-between px-5 py-4 text-left transition hover:bg-neutral-50/70"
-                  >
-                    <span className="text-base font-semibold uppercase tracking-[0.12em] text-neutral-800">
-                      {item.title}
-                    </span>
-                    <span className="text-lg leading-none text-neutral-500" aria-hidden="true">
-                      {isActive ? "-" : "+"}
-                    </span>
-                  </button>
+                return (
                   <div
-                    id={`purpose-panel-${index}`}
-                    className={`overflow-hidden px-5 transition-all duration-300 ${
-                      isActive ? "max-h-40 pb-4 opacity-100" : "max-h-0 pb-0 opacity-0"
-                    }`}
+                    key={`${item.title}-${index}`}
+                    className={index !== safeItems.length - 1 ? "border-b border-neutral-200" : ""}
                   >
-                    <p className="text-sm leading-relaxed text-neutral-600">{item.summary}</p>
+                    <div className={`flex w-full ${rowAlignment}`}>
+                      <div className="w-full max-w-xl">
+                        <button
+                          type="button"
+                          aria-expanded={isActive}
+                          aria-controls={`purpose-panel-${index}`}
+                          onClick={() => setActiveIndex((prev) => (prev === index ? null : index))}
+                          className="flex w-full items-center justify-between px-5 py-4 text-left transition hover:bg-white/5"
+                        >
+                          <span className="text-base font-semibold uppercase tracking-[0.12em] !text-white">
+                            {item.title}
+                          </span>
+                          <span className="text-lg leading-none !text-white" aria-hidden="true">
+                            {isActive ? "-" : "+"}
+                          </span>
+                        </button>
+                        <div
+                          id={`purpose-panel-${index}`}
+                          className={`overflow-hidden px-5 transition-all duration-300 ${
+                            isActive ? "max-h-40 pb-4" : "max-h-0 pb-0 hidden"
+                          }`}
+                        >
+                          <div className="relative z-10 rounded-2xl bg-black/50 px-6 pb-12 pt-6 text-white backdrop-blur-sm">
+                            <p
+                              className="text-sm font-medium !text-white !opacity-100 drop-shadow"
+                              style={{ color: "#fff" }}
+                            >
+                              {item.lead}
+                            </p>
+                            <p
+                              className="mt-2 text-sm leading-relaxed !text-white !opacity-100 drop-shadow-md"
+                              style={{ color: "#fff" }}
+                            >
+                              {item.body}
+                            </p>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
                   </div>
-                </div>
-              );
-            })}
+                );
+              })}
+            </div>
           </div>
         </div>
       </div>
