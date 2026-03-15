@@ -2,7 +2,6 @@ import { Routes, Route, Navigate } from "react-router-dom";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import Home from "./pages/Home";
-// About page removed; redirect route set to home
 import Contact from "./pages/Contact";
 import bg from "./assets/FeintDrawings.jpeg";
 

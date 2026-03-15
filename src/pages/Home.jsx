@@ -15,6 +15,13 @@ import tl1 from "../assets/TL_1.jpeg";
 import krh1 from "../assets/KRH_1.jpeg";
 import dsc1 from "../assets/DSC_1.jpeg";
 import vgm01 from "../assets/VGM_01.jpeg";
+import truckStop from "../assets/TruckStop.png";
+import hotelImage from "../assets/Hotel.png";
+import crcImage from "../assets/CRC.jpeg";
+import gatheringImage from "../assets/Gathering.png";
+import projectManagementImage from "../assets/PJ_Chasa.png";
+import materialsImage from "../assets/Materials.png";
+import drawingImage from "../assets/Drawing.png";
 
 delete L.Icon.Default.prototype._getIconUrl;
 L.Icon.Default.mergeOptions({
@@ -24,7 +31,7 @@ L.Icon.Default.mergeOptions({
 });
 
 export default function Home() {
-  const slides = [pc1, pc2, tl1, krh1, dsc1, vgm01];
+  const slides = [pc1, pc2, tl1, krh1, dsc1, vgm01, truckStop, hotelImage, crcImage];
   const locations = [
     { city: "Johannesburg", country: "South Africa", lat: -26.2041, lng: 28.0473 },
     { city: "Gaborone", country: "Botswana", lat: -24.6282, lng: 25.9231 },
@@ -75,12 +82,99 @@ export default function Home() {
         </div>
       </section>
 
+      <section className="w-full">
+        <div className="px-8 py-6">
+          <h2 className="text-2xl font-semibold tracking-tight text-neutral-900 md:text-3xl">
+            Our Services:
+          </h2>
+        </div>
+        <section className="grid grid-cols-2 w-full">
+          <div className="h-[420px] overflow-hidden">
+            <img
+              src={drawingImage}
+              alt="Site Prints & Drafting"
+              className="w-full h-full object-cover transition duration-500 hover:scale-105"
+            />
+          </div>
+          <div className="flex items-center justify-center bg-[#7f9a93] p-16 text-center text-white">
+            <div>
+              <h2 className="text-3xl font-semibold md:text-5xl">Site Prints & Drafting</h2>
+              <p className="mt-4 text-lg opacity-80">
+                Architectural plans, site layouts, and precise drafting for project delivery.
+              </p>
+            </div>
+          </div>
+        </section>
+
+        <section className="grid grid-cols-2 w-full">
+          <div className="flex items-center justify-center bg-[#7f9a93] p-16 text-center text-white">
+            <div>
+              <h2 className="text-3xl font-semibold md:text-5xl">3D Visualization</h2>
+              <p className="mt-4 text-lg opacity-80">
+                High-quality architectural renders and presentation visuals.
+              </p>
+            </div>
+          </div>
+          <div className="h-[420px] overflow-hidden">
+            <img
+              src={gatheringImage}
+              alt="3D Visualization"
+              className="w-full h-full object-cover transition duration-500 hover:scale-105"
+            />
+          </div>
+        </section>
+
+        <section className="grid grid-cols-2 w-full">
+          <div className="h-[420px] overflow-hidden">
+            <img
+              src={projectManagementImage}
+              alt="Spatial planning and sections"
+              className="w-full h-full object-cover transition duration-500 hover:scale-105"
+            />
+          </div>
+          <div className="flex items-center justify-center bg-[#7f9a93] p-16 text-center text-white">
+            <div>
+              <h2 className="text-3xl font-semibold md:text-5xl">Project Management</h2>
+              <p className="mt-4 text-lg opacity-80">
+                Coordinating timelines, teams, consultants, and delivery milestones from concept to completion.
+              </p>
+            </div>
+          </div>
+        </section>
+
+        <section className="grid grid-cols-2 w-full">
+          <div className="flex items-center justify-center bg-[#7f9a93] p-16 text-center text-white">
+            <div>
+              <h2 className="text-3xl font-semibold md:text-5xl">
+                Interior Design & Material Selection
+              </h2>
+              <p className="mt-4 text-lg opacity-80">
+                Interior layouts, finishes, lighting concepts, and curated material palettes.
+              </p>
+            </div>
+          </div>
+          <div className="h-[420px] overflow-hidden">
+            <img
+              src={materialsImage}
+              alt="Interior Design & Material Selection"
+              className="w-full h-full object-cover transition duration-500 hover:scale-105"
+            />
+          </div>
+        </section>
+      </section>
+
+      <div className="px-8 pt-16 md:pt-24">
+        <h2 className="text-2xl font-semibold tracking-tight text-neutral-900 md:text-3xl">
+          How We Work:
+        </h2>
+      </div>
+
       {/* Design approach */}
       <section className="py-20">
         <Container>
           <div className="mx-auto grid max-w-6xl gap-12 md:grid-cols-[minmax(0,600px)_1fr] md:items-start">
             <div className="max-w-[600px]">
-              <h2 className="text-4xl font-semibold tracking-tight text-neutral-900 sm:text-5xl">
+              <h2 className="text-3xl font-semibold tracking-tight text-neutral-900 sm:text-4xl">
                 Design Approach
               </h2>
               <p className="mt-6 text-base leading-relaxed text-neutral-600 sm:text-lg">
@@ -109,10 +203,19 @@ export default function Home() {
         </Container>
       </section>
 
+      <div aria-hidden="true" className="h-10 md:h-14" />
+
       <PurposeAccordionSplit />
+      <div aria-hidden="true" className="h-12 md:h-20" />
+
+      <div className="px-8 pb-6">
+        <h2 className="text-2xl font-semibold tracking-tight text-neutral-900 md:text-3xl">
+          Our Work:
+        </h2>
+      </div>
 
       {/* Concepts images (slideshow) */}
-      <section id="concepts" className="pb-16 pt-20">
+      <section id="concepts" className="pb-16">
         <Container>
           <div className="mx-auto max-w-[30rem]">
             <div className="relative h-[360px] w-full overflow-hidden rounded-3xl sm:h-[440px]">
@@ -155,7 +258,7 @@ export default function Home() {
       <section className="py-16">
         <Container>
           <div className="mx-auto max-w-4xl">
-            <h2 className="text-2xl font-semibold tracking-tight text-neutral-900">Where we work</h2>
+            <h2 className="text-2xl font-semibold tracking-tight text-neutral-900">Where we work:</h2>
             <div className="mt-4 overflow-hidden rounded-2xl border border-neutral-200 shadow-sm">
               <MapContainer
                 center={[-2, 24]}
