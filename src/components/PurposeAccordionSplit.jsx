@@ -109,14 +109,6 @@ export default function PurposeAccordionSplit({ items = defaultItems }) {
         <div className="grid gap-10 items-start">
           <div className="relative rounded-3xl">
             <div className="relative z-10">
-              <div className="mb-6 h-[240px] overflow-hidden rounded-2xl md:h-[420px]">
-                <div
-                  className="h-full w-full bg-cover bg-center transition-[background-image] duration-300"
-                  style={{
-                    backgroundImage: `url(${activeItem?.image ?? safeItems[0]?.image})`,
-                  }}
-                />
-              </div>
               <div className="rounded-2xl bg-black/5 p-3 sm:p-4">
                 <div className="flex flex-col gap-4">
                   {safeItems.map((item, index) => {
