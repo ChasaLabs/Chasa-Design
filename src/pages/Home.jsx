@@ -53,7 +53,7 @@ export default function Home() {
       {/* Hero */}
       <section className="border-b border-neutral-200">
         <div className="relative">
-          <div className="relative min-h-[70vh] flex items-center">
+          <div className="relative flex min-h-[60svh] items-center md:min-h-[70svh]">
             <div className="absolute inset-0 bg-black/40" /> {/* soft dark overlay for readability */}
             <div className="relative z-10 w-full">
               <Container>
@@ -82,21 +82,21 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="w-full">
+      <section className="w-full max-w-full overflow-hidden">
         <div className="px-8 py-6">
           <h2 className="text-2xl font-semibold tracking-tight text-neutral-900 md:text-3xl">
             Our Services:
           </h2>
         </div>
-        <section className="grid grid-cols-2 w-full">
-          <div className="h-[420px] overflow-hidden">
+        <section className="grid w-full max-w-full grid-cols-2 overflow-hidden">
+          <div className="min-w-0 h-[420px] overflow-hidden">
             <img
               src={drawingImage}
               alt="Site Prints & Drafting"
               className="w-full h-full object-cover transition duration-500 hover:scale-105"
             />
           </div>
-          <div className="flex items-center justify-center bg-[#7f9a93] p-16 text-center text-white">
+          <div className="flex min-w-0 items-center justify-center bg-[#7f9a93] p-8 text-center text-white md:p-16">
             <div>
               <h2 className="text-3xl font-semibold md:text-5xl">Site Prints & Drafting</h2>
               <p className="mt-4 text-lg opacity-80">
@@ -106,8 +106,8 @@ export default function Home() {
           </div>
         </section>
 
-        <section className="grid grid-cols-2 w-full">
-          <div className="flex items-center justify-center bg-[#7f9a93] p-16 text-center text-white">
+        <section className="grid w-full max-w-full grid-cols-2 overflow-hidden">
+          <div className="flex min-w-0 items-center justify-center bg-[#7f9a93] p-8 text-center text-white md:p-16">
             <div>
               <h2 className="text-3xl font-semibold md:text-5xl">3D Visualization</h2>
               <p className="mt-4 text-lg opacity-80">
@@ -115,7 +115,7 @@ export default function Home() {
               </p>
             </div>
           </div>
-          <div className="h-[420px] overflow-hidden">
+          <div className="min-w-0 h-[420px] overflow-hidden">
             <img
               src={gatheringImage}
               alt="3D Visualization"
@@ -124,15 +124,15 @@ export default function Home() {
           </div>
         </section>
 
-        <section className="grid grid-cols-2 w-full">
-          <div className="h-[420px] overflow-hidden">
+        <section className="grid w-full max-w-full grid-cols-2 overflow-hidden">
+          <div className="min-w-0 h-[420px] overflow-hidden">
             <img
               src={projectManagementImage}
               alt="Spatial planning and sections"
               className="w-full h-full object-cover transition duration-500 hover:scale-105"
             />
           </div>
-          <div className="flex items-center justify-center bg-[#7f9a93] p-16 text-center text-white">
+          <div className="flex min-w-0 items-center justify-center bg-[#7f9a93] p-8 text-center text-white md:p-16">
             <div>
               <h2 className="text-3xl font-semibold md:text-5xl">Project Management</h2>
               <p className="mt-4 text-lg opacity-80">
@@ -142,8 +142,8 @@ export default function Home() {
           </div>
         </section>
 
-        <section className="grid grid-cols-2 w-full">
-          <div className="flex items-center justify-center bg-[#7f9a93] p-16 text-center text-white">
+        <section className="grid w-full max-w-full grid-cols-2 overflow-hidden">
+          <div className="flex min-w-0 items-center justify-center bg-[#7f9a93] p-8 text-center text-white md:p-16">
             <div>
               <h2 className="text-3xl font-semibold md:text-5xl">
                 Interior Design & Material Selection
@@ -153,7 +153,7 @@ export default function Home() {
               </p>
             </div>
           </div>
-          <div className="h-[420px] overflow-hidden">
+          <div className="min-w-0 h-[420px] overflow-hidden">
             <img
               src={materialsImage}
               alt="Interior Design & Material Selection"

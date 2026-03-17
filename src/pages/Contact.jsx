@@ -2,7 +2,7 @@ import bg from "../assets/FeintDrawings.jpeg";
 
 export default function Contact() {
   return (
-    <section className="relative min-h-screen overflow-hidden pt-32 pb-20">
+    <section className="relative min-h-[70svh] overflow-hidden pt-32 pb-20 md:min-h-screen">
       <div
         className="absolute inset-0"
         style={{

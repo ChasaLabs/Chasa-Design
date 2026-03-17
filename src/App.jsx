@@ -7,25 +7,19 @@ import bg from "./assets/FeintDrawings.jpeg";
 
 export default function App() {
   return (
-    <div className="min-h-screen font-sans">
+    <div className="min-h-[100svh] overflow-x-hidden font-sans">
       <div
         id="app-background-layer"
         data-default-bg={bg}
         aria-hidden
+        className="fixed inset-0 -z-10 bg-cover bg-center bg-no-repeat"
         style={{
           backgroundImage: `url(${bg})`,
-          backgroundSize: "cover",
-          backgroundPosition: "center",
-          backgroundRepeat: "no-repeat",
-          backgroundAttachment: "fixed",
           transition: "background-image 300ms ease-out",
-          position: "fixed",
-          inset: 0,
-          zIndex: -1,
         }}
       />
       <Navbar />
-      <main>
+      <main className="overflow-x-hidden">
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/projects" element={<Navigate to="/#concepts" replace />} />
