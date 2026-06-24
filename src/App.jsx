@@ -2,6 +2,7 @@ import { Routes, Route, Navigate } from "react-router-dom";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import Home from "./pages/Home";
+import Projects from "./pages/Projects";
 import Contact from "./pages/Contact";
 import bg from "./assets/FeintDrawings.jpeg";
 
@@ -27,7 +28,7 @@ export default function App() {
       <main className="overflow-x-hidden">
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/projects" element={<Navigate to="/#concepts" replace />} />
+          <Route path="/projects" element={<Projects />} />
           <Route path="/about" element={<Navigate to="/" replace />} />
           <Route path="/contact" element={<Contact />} />
         </Routes>

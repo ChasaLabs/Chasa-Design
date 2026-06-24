@@ -9,15 +9,7 @@ import "leaflet/dist/leaflet.css";
 import markerIcon2x from "leaflet/dist/images/marker-icon-2x.png";
 import markerIcon from "leaflet/dist/images/marker-icon.png";
 import markerShadow from "leaflet/dist/images/marker-shadow.png";
-import pc1 from "../assets/PC_1.jpeg";
-import pc2 from "../assets/PC_2.jpeg";
-import tl1 from "../assets/TL_1.jpeg";
-import krh1 from "../assets/KRH_1.jpeg";
-import dsc1 from "../assets/DSC_1.jpeg";
-import vgm01 from "../assets/VGM_01.jpeg";
-import truckStop from "../assets/TruckStop.png";
-import hotelImage from "../assets/Hotel.png";
-import crcImage from "../assets/CRC.jpeg";
+import { projects } from "../data/projects";
 import gatheringImage from "../assets/Gathering.png";
 import projectManagementImage from "../assets/PJ_Chasa.png";
 import materialsImage from "../assets/Materials.png";
@@ -31,7 +23,7 @@ L.Icon.Default.mergeOptions({
 });
 
 export default function Home() {
-  const slides = [pc1, pc2, tl1, krh1, dsc1, vgm01, truckStop, hotelImage, crcImage];
+  const slides = projects.filter((project) => project.featuredOnHome !== false);
   const locations = [
     { city: "Johannesburg", country: "South Africa", lat: -26.2041, lng: 28.0473 },
     { city: "Gaborone", country: "Botswana", lat: -24.6282, lng: 25.9231 },
@@ -59,7 +51,7 @@ export default function Home() {
               <Container>
                 <div className="mx-auto max-w-2xl text-center">
                   <p className="text-sm tracking-[0.25em] text-white/90">CHASA DESIGN</p>
-                  <h1 className="mt-3 text-3xl sm:text-5xl font-semibold tracking-tight text-white">
+                  <h1 className="mt-3 text-[1.2rem] sm:text-[1.92rem] font-semibold tracking-tight text-white">
                     Thoughtful architecture, grounded in place.
                   </h1>
                   <p className="mt-4 text-white/90 leading-relaxed">
@@ -67,12 +59,12 @@ export default function Home() {
                     modern approach to the built environment.
                   </p>
                   <div className="mt-8 flex justify-center gap-6">
-                    <a
-                      href="#concepts"
+                    <Link
+                      to="/projects"
                       className="rounded-full border border-white/60 px-6 py-3 text-sm !text-white bg-white/10 hover:bg-white/20"
                     >
                       View Projects
-                    </a>
+                    </Link>
                   </div>
                 </div>
               </Container>
@@ -209,8 +201,10 @@ export default function Home() {
       <div aria-hidden="true" className="h-12 md:h-20" />
 
       <div className="px-8 pb-6">
-        <h2 className="text-2xl font-semibold tracking-tight text-neutral-900 md:text-3xl">
-          Our Work:
+        <h2 className="text-2xl font-semibold tracking-tight md:text-3xl">
+          <Link to="/projects" className="text-neutral-900 hover:text-neutral-700">
+            Our Work:
+          </Link>
         </h2>
       </div>
 
@@ -219,16 +213,16 @@ export default function Home() {
         <Container>
           <div className="mx-auto max-w-[30rem]">
             <div className="relative h-[360px] w-full overflow-hidden rounded-3xl sm:h-[440px]">
-              {slides.map((src, index) => (
+              {slides.map((project, index) => (
                 <div
-                  key={src}
+                  key={project.id}
                   className={`absolute inset-0 h-full w-full transition-opacity duration-700 ${
                     index === activeIndex ? "opacity-100" : "opacity-0"
                   }`}
                 >
                   <img
-                    src={src}
-                    alt={`Slide ${index + 1}`}
+                    src={project.image}
+                    alt={`${project.title} project`}
                     className="h-full w-full object-cover"
                   />
                 </div>

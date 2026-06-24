@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { NavLink } from "react-router-dom";
 import logo from "../assets/Chasa_Logo.svg";
 
-const linkBase = "text-white text-sm tracking-wide drop-shadow-sm";
+const linkBase = "inline-flex items-center px-1 text-sm font-medium tracking-wide text-white drop-shadow-sm";
 const active = "text-white font-semibold";
 const idle = "text-white hover:text-white/80";
 
@@ -59,7 +59,7 @@ export default function Navbar() {
         isVisible ? "translate-y-0" : "-translate-y-full"
       }`}
     >
-      <div className="w-full flex h-20 items-center px-6">
+      <div className="w-full flex h-20 items-center overflow-x-hidden px-3 sm:px-6">
 
         {/* Left: logo */}
         <div className="flex items-center flex-shrink-0">
@@ -71,12 +71,11 @@ export default function Navbar() {
         </div>
 
         {/* Right: navigation links */}
-        <div className="ml-auto pr-8">
-          <nav className="flex items-center" style={{ gap: "2.5rem" }}>
-            <NavLink to="/about" className={({ isActive }) => `${linkBase} ${isActive ? active : idle}`}>About</NavLink>
-            <NavLink to="/contact" className={({ isActive }) => `${linkBase} ${isActive ? active : idle}`}>Contact</NavLink>
-          </nav>
-        </div>
+        <nav className="ml-auto flex items-center gap-5 whitespace-nowrap sm:gap-8 md:gap-10">
+          <NavLink to="/projects" className={({ isActive }) => `${linkBase} ${isActive ? active : idle}`}>Projects</NavLink>
+          <NavLink to="/about" className={({ isActive }) => `${linkBase} ${isActive ? active : idle}`}>About</NavLink>
+          <NavLink to="/contact" className={({ isActive }) => `${linkBase} ${isActive ? active : idle}`}>Contact</NavLink>
+        </nav>
 
 
       </div>
