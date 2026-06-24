@@ -4,6 +4,7 @@ import Footer from "./components/Footer";
 import Home from "./pages/Home";
 import Projects from "./pages/Projects";
 import Contact from "./pages/Contact";
+import ChasaLabs from "./pages/ChasaLabs";
 import bg from "./assets/FeintDrawings.jpeg";
 
 export default function App() {
@@ -31,6 +32,8 @@ export default function App() {
           <Route path="/projects" element={<Projects />} />
           <Route path="/about" element={<Navigate to="/" replace />} />
           <Route path="/contact" element={<Contact />} />
+          <Route path="/labs" element={<ChasaLabs />} />
+          <Route path="/chasa-labs" element={<Navigate to="/labs" replace />} />
         </Routes>
       </main>
       <Footer />

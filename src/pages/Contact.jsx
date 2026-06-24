@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import bg from "../assets/FeintDrawings.jpeg";
 
 export default function Contact() {
@@ -51,20 +52,32 @@ export default function Contact() {
               <div>
                 <p className="text-xs uppercase tracking-[0.18em] text-neutral-500">Connect:</p>
                 <div className="mt-2 flex items-center gap-2">
-                  <button type="button" className="rounded-full border border-black/20 px-3 py-1.5 text-xs text-neutral-900">
+                  <a
+                    href="https://www.instagram.com/chasa_design/"
+                    target="_blank"
+                    rel="noreferrer"
+                    className="rounded-full border border-black/20 px-3 py-1.5 text-xs text-neutral-900"
+                  >
                     IG
-                  </button>
-                  <button type="button" className="rounded-full border border-black/20 px-3 py-1.5 text-xs text-neutral-900">
+                  </a>
+                  <a
+                    href="https://bw.linkedin.com/in/charles-rop-702bb251"
+                    target="_blank"
+                    rel="noreferrer"
+                    className="rounded-full border border-black/20 px-3 py-1.5 text-xs text-neutral-900"
+                  >
                     LI
-                  </button>
-                  <button type="button" className="rounded-full border border-black/20 px-3 py-1.5 text-xs text-neutral-900">
-                    X
-                  </button>
+                  </a>
                 </div>
               </div>
             </div>
 
-            <p className="mt-12 text-xs text-neutral-500">Powered by Chasa Systems</p>
+            <p className="mt-12 text-xs text-neutral-500">
+              Powered by{" "}
+              <Link to="/labs" className="font-medium text-neutral-900 hover:underline">
+                Chasa Labs
+              </Link>
+            </p>
           </aside>
 
           <div className="rounded-3xl border border-black/10 bg-white/70 p-8 backdrop-blur-sm">

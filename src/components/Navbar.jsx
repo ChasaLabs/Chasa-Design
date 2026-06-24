@@ -2,10 +2,6 @@ import { useState, useEffect } from "react";
 import { NavLink } from "react-router-dom";
 import logo from "../assets/Chasa_Logo.svg";
 
-const linkBase = "inline-flex items-center px-1 text-sm font-medium tracking-wide text-white drop-shadow-sm";
-const active = "text-white font-semibold";
-const idle = "text-white hover:text-white/80";
-
 export default function Navbar() {
   const [isVisible, setIsVisible] = useState(true);
   const [lastScrollY, setLastScrollY] = useState(0);
@@ -71,10 +67,41 @@ export default function Navbar() {
         </div>
 
         {/* Right: navigation links */}
-        <nav className="ml-auto flex items-center gap-5 whitespace-nowrap sm:gap-8 md:gap-10">
-          <NavLink to="/projects" className={({ isActive }) => `${linkBase} ${isActive ? active : idle}`}>Projects</NavLink>
-          <NavLink to="/about" className={({ isActive }) => `${linkBase} ${isActive ? active : idle}`}>About</NavLink>
-          <NavLink to="/contact" className={({ isActive }) => `${linkBase} ${isActive ? active : idle}`}>Contact</NavLink>
+        <nav className="ml-auto flex items-center whitespace-nowrap">
+          <NavLink
+            to="/projects"
+            className={({ isActive }) =>
+              `inline-flex items-center px-3 py-2 text-sm font-semibold tracking-wide ${
+                isActive ? "text-purple-700" : "text-purple-700 hover:text-purple-900"
+              }`
+            }
+          >
+            Projects
+          </NavLink>
+
+          <NavLink
+            to="/about"
+            style={{ marginLeft: "2rem" }}
+            className={({ isActive }) =>
+              `inline-flex items-center px-3 py-2 text-sm font-semibold tracking-wide ${
+                isActive ? "text-purple-700" : "text-purple-700 hover:text-purple-900"
+              }`
+            }
+          >
+            About
+          </NavLink>
+
+          <NavLink
+            to="/contact"
+            style={{ marginLeft: "2rem" }}
+            className={({ isActive }) =>
+              `inline-flex items-center px-3 py-2 text-sm font-semibold tracking-wide ${
+                isActive ? "text-purple-700" : "text-purple-700 hover:text-purple-900"
+              }`
+            }
+          >
+            Contact
+          </NavLink>
         </nav>
 
 

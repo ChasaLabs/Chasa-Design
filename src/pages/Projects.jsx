@@ -73,6 +73,28 @@ function ProjectLabels({ items, className = "" }) {
   );
 }
 
+const practiceStats = [
+  {
+    value: "20+",
+    label: "Years in Practice",
+    detail: "Registered since 2004",
+  },
+  {
+    value: "30+",
+    label: "Selected Projects",
+    detail: "Across Botswana, South Africa and Kenya",
+  },
+  {
+    value: "P800M+",
+    label: "Portfolio Value",
+    detail: "Across selected works listed in the company profile",
+  },
+  {
+    value: "4",
+    label: "Professional Jurisdictions",
+    detail: "Botswana, South Africa, Kenya and Rwanda",
+  },
+];
 export default function Projects() {
   const [activeIndex, setActiveIndex] = useState(null);
   const [activeSlides, setActiveSlides] = useState({});
@@ -90,6 +112,51 @@ export default function Projects() {
             infrastructure, worship, and community environments.
           </p>
         </div>
+
+        <section id="practice-snapshot" className="mt-16 md:mt-20">
+          <div className="relative overflow-hidden rounded-[2rem] bg-neutral-900 px-6 py-10 text-white sm:px-10 md:py-12">
+
+            <div className="relative z-10 max-w-3xl">
+              <p className="text-xs uppercase tracking-[0.3em] text-white/55">
+                Practice Snapshot
+              </p>
+              <h2 className="mt-4 text-xl font-semibold tracking-tight text-white sm:text-2xl">
+                Experience measured through practice and place.
+              </h2>
+              <p className="mt-5 text-sm leading-7 text-white/70 sm:text-base">
+                A registered architectural practice with over 20 years of experience, Chasa Design
+                has contributed to a diverse portfolio of commercial, hospitality, healthcare,
+                worship, sports, infrastructure and residential projects across Botswana and the
+                region.
+              </p>
+            </div>
+
+            <div className="relative z-10 mt-10 flex flex-wrap gap-4 border-t border-white/10 pt-8">
+              {practiceStats.map((stat, index) => {
+                const isBlue = index % 2 === 1;
+
+                return (
+                  <article
+                    key={stat.label}
+                    className={`min-w-[10rem] flex-1 basis-48 rounded-2xl p-5 sm:p-6 ${
+                      isBlue ? "bg-[#315b78]" : "bg-white"
+                    }`}
+                  >
+                    <p className={`text-center text-3xl font-semibold tracking-tight ${isBlue ? "text-white" : "text-neutral-950"}`}>
+                      {stat.value}
+                    </p>
+                    <p className={`mt-3 text-xs font-semibold uppercase tracking-[0.18em] ${isBlue ? "text-white/75" : "text-neutral-700"}`}>
+                      {stat.label}
+                    </p>
+                    <p className={`mt-2 text-sm leading-6 ${isBlue ? "text-white/60" : "text-neutral-600"}`}>
+                      {stat.detail}
+                    </p>
+                  </article>
+                );
+              })}
+            </div>
+          </div>
+        </section>
 
         <div className="mt-12 overflow-hidden rounded-[2rem] border border-black/10 bg-white/55 shadow-sm backdrop-blur-sm">
           {portfolioGroups.map((group, index) => {
