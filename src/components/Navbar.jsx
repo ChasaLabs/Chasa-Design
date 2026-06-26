@@ -5,8 +5,7 @@ import logo from "../assets/Chasa_Logo.svg";
 export default function Navbar() {
   const [isVisible, setIsVisible] = useState(true);
   const [lastScrollY, setLastScrollY] = useState(0);
-  const [scrollDirection, setScrollDirection] = useState("up");
-  const hideThreshold = 100; // Hide navbar after scrolling 100px down
+  const hideThreshold = 100;
 
   useEffect(() => {
     let ticking = false;
@@ -16,22 +15,14 @@ export default function Navbar() {
         window.requestAnimationFrame(() => {
           const currentScrollY = window.scrollY;
 
-          // If near the top, always show navbar
           if (currentScrollY < 50) {
             setIsVisible(true);
-            setScrollDirection("up");
-          } else {
-            // Determine scroll direction
-            if (currentScrollY > lastScrollY) {
-              setScrollDirection("down");
-              // Hide if scrolled past threshold
-              if (currentScrollY > hideThreshold) {
-                setIsVisible(false);
-              }
-            } else {
-              setScrollDirection("up");
-              setIsVisible(true);
+          } else if (currentScrollY > lastScrollY) {
+            if (currentScrollY > hideThreshold) {
+              setIsVisible(false);
             }
+          } else {
+            setIsVisible(true);
           }
 
           setLastScrollY(currentScrollY);
@@ -51,28 +42,25 @@ export default function Navbar() {
 
   return (
     <header
-      className={`fixed top-0 left-0 w-full z-50 bg-black/30 backdrop-blur-sm transition-transform duration-300 ease-out ${
+      className={`fixed left-0 top-0 z-50 w-full bg-slate-950/50 backdrop-blur-sm transition-transform duration-300 ease-out ${
         isVisible ? "translate-y-0" : "-translate-y-full"
       }`}
     >
-      <div className="w-full flex h-20 items-center overflow-x-hidden px-3 sm:px-6">
-
-        {/* Left: logo */}
-        <div className="flex items-center flex-shrink-0">
+      <div className="flex h-20 w-full items-center overflow-x-hidden px-3 sm:px-6">
+        <div className="flex flex-shrink-0 items-center">
           <NavLink to="/" className="flex items-center">
-            <div className="h-[80px] w-[80px] rounded-full overflow-hidden flex items-center justify-center bg-white/5 p-1">
+            <div className="flex h-[80px] w-[80px] items-center justify-center overflow-hidden rounded-full bg-white/5 p-1">
               <img src={logo} alt="Chasa logo" className="max-h-[80px] max-w-[80px] object-contain" />
             </div>
           </NavLink>
         </div>
 
-        {/* Right: navigation links */}
-        <nav className="ml-auto flex items-center whitespace-nowrap">
+        <nav className="ml-auto flex flex-wrap items-center justify-end gap-2 whitespace-nowrap sm:gap-4 md:gap-6">
           <NavLink
             to="/projects"
             className={({ isActive }) =>
-              `inline-flex items-center px-3 py-2 text-sm font-semibold tracking-wide ${
-                isActive ? "text-purple-700" : "text-purple-700 hover:text-purple-900"
+              `inline-flex items-center rounded-full px-2 py-2 text-sm font-semibold tracking-wide sm:px-3 ${
+                isActive ? "text-cyan-300" : "text-slate-100 hover:text-cyan-200"
               }`
             }
           >
@@ -83,8 +71,8 @@ export default function Navbar() {
             to="/about"
             style={{ marginLeft: "2rem" }}
             className={({ isActive }) =>
-              `inline-flex items-center px-3 py-2 text-sm font-semibold tracking-wide ${
-                isActive ? "text-purple-700" : "text-purple-700 hover:text-purple-900"
+              `inline-flex items-center rounded-full px-2 py-2 text-sm font-semibold tracking-wide sm:px-3 ${
+                isActive ? "text-cyan-300" : "text-slate-100 hover:text-cyan-200"
               }`
             }
           >
@@ -95,18 +83,15 @@ export default function Navbar() {
             to="/contact"
             style={{ marginLeft: "2rem" }}
             className={({ isActive }) =>
-              `inline-flex items-center px-3 py-2 text-sm font-semibold tracking-wide ${
-                isActive ? "text-purple-700" : "text-purple-700 hover:text-purple-900"
+              `inline-flex items-center rounded-full px-2 py-2 text-sm font-semibold tracking-wide sm:px-3 ${
+                isActive ? "text-cyan-300" : "text-slate-100 hover:text-cyan-200"
               }`
             }
           >
             Contact
           </NavLink>
         </nav>
-
-
       </div>
     </header>
-
   );
 }
