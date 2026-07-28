@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import bg from "../assets/FeintDrawings.jpeg";
+import RevealOnScroll from "../components/RevealOnScroll";
 
 export default function Contact() {
   return (
@@ -16,7 +17,8 @@ export default function Contact() {
 
       <div className="relative z-10 max-w-6xl mx-auto px-6">
         <div className="grid grid-cols-1 gap-10 lg:grid-cols-[380px_1fr]">
-          <aside className="rounded-3xl border border-black/10 bg-white/80 p-8 backdrop-blur">
+          <RevealOnScroll>
+            <aside className="rounded-3xl border border-black/10 bg-white/80 p-8 backdrop-blur">
             <h1 className="text-center text-2xl font-semibold tracking-tight text-neutral-900">Contact us</h1>
             <div className="mt-3 h-px w-20 bg-neutral-300" />
 
@@ -78,19 +80,22 @@ export default function Contact() {
                 Chasa Labs
               </Link>
             </p>
-          </aside>
+            </aside>
+          </RevealOnScroll>
 
-          <div className="rounded-3xl border border-black/10 bg-white/70 p-8 backdrop-blur-sm">
-            <h2 className="text-3xl font-semibold tracking-tight text-neutral-900">Get in touch</h2>
-            <p className="mt-4 max-w-xl text-neutral-700 leading-relaxed">
-              We collaborate with clients across early concepts, planning, and detailed delivery.
-              Share your location, timeline, and project goals and we will respond with next steps.
-            </p>
-            <p className="mt-3 max-w-xl text-neutral-700 leading-relaxed">
-              For best response times, contact us by email or phone. We typically respond within one business day.
-            </p>
+          <RevealOnScroll delay={120}>
+            <div className="rounded-3xl border border-black/10 bg-white/70 p-8 backdrop-blur-sm">
+              <h2 className="text-3xl font-semibold tracking-tight text-neutral-900">Get in touch</h2>
+              <p className="mt-4 max-w-xl text-neutral-700 leading-relaxed">
+                We collaborate with clients across early concepts, planning, and detailed delivery.
+                Share your location, timeline, and project goals and we will respond with next steps.
+              </p>
+              <p className="mt-3 max-w-xl text-neutral-700 leading-relaxed">
+                For best response times, contact us by email or phone. We typically respond within one business day.
+              </p>
 
-          </div>
+            </div>
+          </RevealOnScroll>
         </div>
       </div>
     </section>

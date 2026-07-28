@@ -3,6 +3,7 @@ import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import Home from "./pages/Home";
 import Projects from "./pages/Projects";
+import About from "./pages/About";
 import Contact from "./pages/Contact";
 import ChasaLabs from "./pages/ChasaLabs";
 import bg from "./assets/FeintDrawings.jpeg";
@@ -30,7 +31,7 @@ export default function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/projects" element={<Projects />} />
-          <Route path="/about" element={<Navigate to="/" replace />} />
+          <Route path="/about" element={<About />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/labs" element={<ChasaLabs />} />
           <Route path="/chasa-labs" element={<Navigate to="/labs" replace />} />

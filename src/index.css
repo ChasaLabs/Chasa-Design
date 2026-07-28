@@ -78,3 +78,30 @@ button:focus-visible {
 .accordion-scope p {
   color: white !important;
 }
+
+.labs-page .labs-dark-panel,
+.labs-page .labs-dark-panel * {
+  color: #f1d9a7 !important;
+}
+
+.labs-page .labs-dark-panel {
+  background-image:
+    radial-gradient(circle at 8% 0%, rgba(143, 166, 181, 0.28), transparent 46%),
+    linear-gradient(135deg, rgba(255, 255, 255, 0.06), transparent 58%);
+  transition: background-color 700ms ease, background-image 700ms ease;
+}
+
+.about-page .about-dark-panel {
+  background-image:
+    radial-gradient(circle at 8% 0%, rgba(130, 153, 180, 0.24), transparent 46%),
+    linear-gradient(135deg, rgba(255, 255, 255, 0.055), transparent 58%);
+  transition: background-color 700ms ease, background-image 700ms ease;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .scroll-reveal {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
+}

@@ -1,6 +1,7 @@
 import { useState } from "react";
 import Container from "../components/Container";
 import ProjectMiniCarousel from "../components/ProjectMiniCarousel";
+import RevealOnScroll from "../components/RevealOnScroll";
 import { projects } from "../data/projects";
 
 const groupDefinitions = [
@@ -102,7 +103,7 @@ export default function Projects() {
   return (
     <section className="overflow-x-hidden pt-28 pb-24 md:pt-32">
       <Container>
-        <div className="mx-auto max-w-3xl text-center">
+        <RevealOnScroll className="mx-auto max-w-3xl text-center" rootMargin="0px 0px -2% 0px">
           <p className="text-xs uppercase tracking-[0.32em] text-neutral-500">Projects</p>
           <h1 className="mt-4 text-[1.125rem] font-semibold tracking-tight text-neutral-950 sm:text-[1.35rem] md:text-[1.65rem]">
             Built around place, purpose, and movement.
@@ -111,12 +112,12 @@ export default function Projects() {
             A curated portfolio of Chasa Design work across retail, hospitality, healthcare,
             infrastructure, worship, and community environments.
           </p>
-        </div>
+        </RevealOnScroll>
 
         <section id="practice-snapshot" className="mt-16 md:mt-20">
           <div className="relative overflow-hidden rounded-[2rem] bg-neutral-900 px-6 py-10 text-white sm:px-10 md:py-12">
 
-            <div className="relative z-10 max-w-3xl">
+            <RevealOnScroll className="relative z-10 max-w-3xl">
               <p className="text-xs uppercase tracking-[0.3em] text-white/55">
                 Practice Snapshot
               </p>
@@ -129,7 +130,7 @@ export default function Projects() {
                 worship, sports, infrastructure and residential projects across Botswana and the
                 region.
               </p>
-            </div>
+            </RevealOnScroll>
 
             <div className="relative z-10 mt-10 flex flex-wrap gap-4 border-t border-white/10 pt-8">
               {practiceStats.map((stat, index) => {
@@ -142,6 +143,7 @@ export default function Projects() {
                       isBlue ? "bg-[#315b78]" : "bg-white"
                     }`}
                   >
+                    <RevealOnScroll delay={index * 90}>
                     <p className={`text-center text-3xl font-semibold tracking-tight ${isBlue ? "text-white" : "text-neutral-950"}`}>
                       {stat.value}
                     </p>
@@ -151,6 +153,7 @@ export default function Projects() {
                     <p className={`mt-2 text-sm leading-6 ${isBlue ? "text-white/60" : "text-neutral-600"}`}>
                       {stat.detail}
                     </p>
+                    </RevealOnScroll>
                   </article>
                 );
               })}
@@ -165,7 +168,12 @@ export default function Projects() {
             const activeProject = group.slides[activeSlideIndex] || group.projects[0];
 
             return (
-              <article key={group.id} className="border-b border-black/10 last:border-b-0">
+              <RevealOnScroll
+                key={group.id}
+                delay={(index % 3) * 70}
+                className="border-b border-black/10 last:border-b-0"
+              >
+              <article>
                 <button
                   type="button"
                   aria-expanded={isOpen}
@@ -231,6 +239,7 @@ export default function Projects() {
                   </div>
                 </div>
               </article>
+              </RevealOnScroll>
             );
           })}
         </div>

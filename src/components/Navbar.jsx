@@ -80,6 +80,18 @@ export default function Navbar() {
           </NavLink>
 
           <NavLink
+            to="/labs"
+            style={{ marginLeft: "2rem" }}
+            className={({ isActive }) =>
+              `inline-flex items-center rounded-full px-2 py-2 text-sm font-semibold tracking-wide sm:px-3 ${
+                isActive ? "text-cyan-300" : "text-slate-100 hover:text-cyan-200"
+              }`
+            }
+          >
+            Labs
+          </NavLink>
+
+          <NavLink
             to="/contact"
             style={{ marginLeft: "2rem" }}
             className={({ isActive }) =>

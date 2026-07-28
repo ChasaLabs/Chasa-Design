@@ -2,6 +2,7 @@
 import { useEffect, useState } from "react";
 import Container from "../components/Container";
 import PurposeAccordionSplit from "../components/PurposeAccordionSplit";
+import RevealOnScroll from "../components/RevealOnScroll";
 import { Link } from "react-router-dom";
 import { MapContainer, Marker, Popup, TileLayer } from "react-leaflet";
 import L from "leaflet";
@@ -49,7 +50,7 @@ export default function Home() {
             <div className="absolute inset-0 bg-black/40" /> {/* soft dark overlay for readability */}
             <div className="relative z-10 w-full">
               <Container>
-                <div className="mx-auto max-w-2xl text-center">
+                <RevealOnScroll className="mx-auto max-w-2xl text-center" rootMargin="0px 0px -2% 0px">
                   <p className="text-sm tracking-[0.25em] text-white/90">CHASA DESIGN</p>
                   <h1 className="mt-3 text-[1.2rem] sm:text-[1.92rem] font-semibold tracking-tight text-white">
                     Thoughtful architecture, grounded in place.
@@ -66,7 +67,7 @@ export default function Home() {
                       View Projects
                     </Link>
                   </div>
-                </div>
+                </RevealOnScroll>
               </Container>
             </div>
           </div>
@@ -76,9 +77,11 @@ export default function Home() {
 
       <section className="w-full max-w-full overflow-hidden">
         <div className="px-8 py-6">
-          <h2 className="text-2xl font-semibold tracking-tight text-neutral-900 md:text-3xl">
-            Our Services:
-          </h2>
+          <RevealOnScroll>
+            <h2 className="text-2xl font-semibold tracking-tight text-neutral-900 md:text-3xl">
+              Our Services:
+            </h2>
+          </RevealOnScroll>
         </div>
         <section className="grid w-full max-w-full grid-cols-2 overflow-hidden">
           <div className="min-w-0 h-[420px] overflow-hidden">
@@ -89,23 +92,23 @@ export default function Home() {
             />
           </div>
           <div className="flex min-w-0 items-center justify-center bg-[#7f9a93] p-8 text-center text-white md:p-16">
-            <div>
+            <RevealOnScroll className="w-full">
               <h2 className="text-3xl font-semibold md:text-5xl">Site Prints & Drafting</h2>
               <p className="mt-4 text-lg opacity-80">
                 Architectural plans, site layouts, and precise drafting for project delivery.
               </p>
-            </div>
+            </RevealOnScroll>
           </div>
         </section>
 
         <section className="grid w-full max-w-full grid-cols-2 overflow-hidden">
           <div className="flex min-w-0 items-center justify-center bg-[#7f9a93] p-8 text-center text-white md:p-16">
-            <div>
+            <RevealOnScroll className="w-full" delay={80}>
               <h2 className="text-3xl font-semibold md:text-5xl">3D Visualization</h2>
               <p className="mt-4 text-lg opacity-80">
                 High-quality architectural renders and presentation visuals.
               </p>
-            </div>
+            </RevealOnScroll>
           </div>
           <div className="min-w-0 h-[420px] overflow-hidden">
             <img
@@ -125,25 +128,25 @@ export default function Home() {
             />
           </div>
           <div className="flex min-w-0 items-center justify-center bg-[#7f9a93] p-8 text-center text-white md:p-16">
-            <div>
+            <RevealOnScroll className="w-full" delay={80}>
               <h2 className="text-3xl font-semibold md:text-5xl">Project Management</h2>
               <p className="mt-4 text-lg opacity-80">
                 Coordinating timelines, teams, consultants, and delivery milestones from concept to completion.
               </p>
-            </div>
+            </RevealOnScroll>
           </div>
         </section>
 
         <section className="grid w-full max-w-full grid-cols-2 overflow-hidden">
           <div className="flex min-w-0 items-center justify-center bg-[#7f9a93] p-8 text-center text-white md:p-16">
-            <div>
+            <RevealOnScroll className="w-full" delay={80}>
               <h2 className="text-3xl font-semibold md:text-5xl">
                 Interior Design & Material Selection
               </h2>
               <p className="mt-4 text-lg opacity-80">
                 Interior layouts, finishes, lighting concepts, and curated material palettes.
               </p>
-            </div>
+            </RevealOnScroll>
           </div>
           <div className="min-w-0 h-[420px] overflow-hidden">
             <img
@@ -156,16 +159,18 @@ export default function Home() {
       </section>
 
       <div className="px-8 pt-16 md:pt-24">
-        <h2 className="text-2xl font-semibold tracking-tight text-neutral-900 md:text-3xl">
-          How We Work:
-        </h2>
+        <RevealOnScroll>
+          <h2 className="text-2xl font-semibold tracking-tight text-neutral-900 md:text-3xl">
+            How We Work:
+          </h2>
+        </RevealOnScroll>
       </div>
 
       {/* Design approach */}
       <section className="py-20">
         <Container>
           <div className="mx-auto grid max-w-6xl gap-12 md:grid-cols-[minmax(0,600px)_1fr] md:items-start">
-            <div className="max-w-[600px]">
+            <RevealOnScroll className="max-w-[600px]">
               <h2 className="text-3xl font-semibold tracking-tight text-neutral-900 sm:text-4xl">
                 Design Approach
               </h2>
@@ -174,8 +179,8 @@ export default function Home() {
                 careful observation, disciplined planning, and precise detailing, creating spaces
                 that feel quiet, functional, and enduring.
               </p>
-            </div>
-            <div className="ml-auto w-fit text-right">
+            </RevealOnScroll>
+            <RevealOnScroll className="ml-auto w-fit text-right" delay={120}>
               <h3 className="text-sm font-semibold uppercase tracking-[0.2em] text-neutral-500">
                 Projects at a glance
               </h3>
@@ -190,7 +195,7 @@ export default function Home() {
                   <span className="font-semibold text-neutral-900">4</span> Countries
                 </li>
               </ul>
-            </div>
+            </RevealOnScroll>
           </div>
         </Container>
       </section>
@@ -201,11 +206,13 @@ export default function Home() {
       <div aria-hidden="true" className="h-12 md:h-20" />
 
       <div className="px-8 pb-6">
-        <h2 className="text-2xl font-semibold tracking-tight md:text-3xl">
-          <Link to="/projects" className="text-neutral-900 hover:text-neutral-700">
-            Our Work:
-          </Link>
-        </h2>
+        <RevealOnScroll>
+          <h2 className="text-2xl font-semibold tracking-tight md:text-3xl">
+            <Link to="/projects" className="text-neutral-900 hover:text-neutral-700">
+              Our Work:
+            </Link>
+          </h2>
+        </RevealOnScroll>
       </div>
 
       {/* Concepts images (slideshow) */}
@@ -252,7 +259,9 @@ export default function Home() {
       <section className="py-16">
         <Container>
           <div className="mx-auto max-w-4xl">
-            <h2 className="text-2xl font-semibold tracking-tight text-neutral-900">Where we work:</h2>
+            <RevealOnScroll>
+              <h2 className="text-2xl font-semibold tracking-tight text-neutral-900">Where we work:</h2>
+            </RevealOnScroll>
             <div className="mt-4 overflow-hidden rounded-2xl border border-neutral-200 shadow-sm">
               <MapContainer
                 center={[-2, 24]}
@@ -283,6 +292,7 @@ export default function Home() {
       <section id="contact-cta" className="border-t border-neutral-200 py-16">
         <Container>
           <div className="rounded-3xl border border-neutral-200 p-8 sm:p-12">
+            <RevealOnScroll>
             <h3 className="text-2xl font-semibold tracking-tight">Let's discuss your project.</h3>
             <p className="mt-3 text-neutral-600 max-w-2xl">
               Share your brief and we’ll respond with next steps and how we can help.
@@ -306,6 +316,7 @@ export default function Home() {
                 Contact us
               </Link>
             </div>
+            </RevealOnScroll>
           </div>
         </Container>
       </section>
