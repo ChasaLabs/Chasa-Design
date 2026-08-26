@@ -1,39 +1,48 @@
-import { Link, useLocation } from "react-router-dom";
-import Container from "../components/Container";
+import { Link } from "react-router-dom";
+import { contact } from "../data/site";
 
 export default function Footer() {
   const year = new Date().getFullYear();
-  const { pathname } = useLocation();
-  const isLabsPage = pathname === "/labs" || pathname === "/chasa-labs";
 
   return (
-    <footer
-      className={
-        isLabsPage
-          ? "border-t border-slate-900/10 bg-[#edf3f5]"
-          : "border-t border-neutral-200"
-      }
-    >
-      <Container className="py-10">
-        <div className="flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
-          <p className={isLabsPage ? "text-sm text-slate-600" : "text-sm text-neutral-500"}>
-            {"\u00A9"} {year} Chasa Design. All rights reserved.
-          </p>
-          <p className={isLabsPage ? "text-sm text-slate-600" : "text-sm text-neutral-500"}>
-            Powered by{" "}
-            <Link
-              to="/labs"
-              className={
-                isLabsPage
-                  ? "text-sky-700 transition hover:text-sky-900"
-                  : "text-neutral-900 transition hover:text-cyan-700"
-              }
-            >
-              Chasa Labs
-            </Link>
-          </p>
+    <footer className="site-footer">
+      <div className="footer-grid architectural-grid">
+        <div className="footer-lead">
+          <p className="eyebrow eyebrow--orange">Chasa Design</p>
+          <h2>Architecture<br />Design<br />Delivery</h2>
         </div>
-      </Container>
+
+        <div className="footer-column">
+          <p className="footer-label">Navigate</p>
+          <Link to="/projects">Projects</Link>
+          <Link to="/studio">Studio</Link>
+          <Link to="/labs">Labs</Link>
+          <Link to="/contact">Contact</Link>
+        </div>
+
+        <div className="footer-column">
+          <p className="footer-label">Connect</p>
+          <a href={`mailto:${contact.email}`}>Email</a>
+          <a href={contact.instagram} target="_blank" rel="noreferrer">Instagram ↗</a>
+          <a href={contact.linkedin} target="_blank" rel="noreferrer">LinkedIn ↗</a>
+        </div>
+
+        <div className="footer-column footer-address">
+          <p className="footer-label">Find us</p>
+          <address>
+            Block 8<br />
+            Gaborone<br />
+            Botswana
+          </address>
+          <a href={contact.phoneHref}>{contact.phone}</a>
+        </div>
+      </div>
+
+      <div className="footer-bottom">
+        <span>Chasa Design © {year}</span>
+        <span>Gaborone / Botswana</span>
+        <Link to="/labs">Powered by Chasa Labs</Link>
+      </div>
     </footer>
   );
 }

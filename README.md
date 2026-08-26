@@ -1,59 +1,39 @@
 # Chasa Design
 
-Website for Chasa Design, built with React and Vite.
+A refreshed editorial architecture portfolio for Chasa Design, built with React, Vite, React Router and Tailwind CSS.
 
 Live domain: `https://www.chasadesign.com`
 
-## Stack
-
-- `React`
-- `Vite`
-- `React Router`
-- `Tailwind CSS`
-- `React Leaflet`
-
 ## Development
-
-Install dependencies:
 
 ```bash
 npm install
-```
-
-Start the development server:
-
-```bash
 npm run dev
 ```
 
-Build for production:
+Production checks:
 
 ```bash
+npm run lint
 npm run build
-```
-
-Preview the production build locally:
-
-```bash
 npm run preview
 ```
 
+## Structure
+
+- `src/data/projects.js` is the single source of truth for project names, locations, categories, descriptions and imagery.
+- `src/data/site.js` centralises contact details, services, methodology, regions and Labs capabilities.
+- `src/components/` contains the shared navigation, footer, project, reveal, diagram and page-heading systems.
+- `src/pages/` contains Home, Projects, dynamic Project Detail, Studio, Labs, Contact and 404 routes.
+
 ## Deployment
 
-This project is configured to publish the built `dist` folder with `gh-pages`.
-
-Deploy:
+The existing `gh-pages` workflow and `www.chasadesign.com` custom domain are retained. `public/404.html` restores direct React routes on GitHub Pages, and Cloudflare Web Analytics loads only on the production domain.
 
 ```bash
 npm run deploy
 ```
 
-That command runs:
+## Content confirmations
 
-- `npm run build`
-- `gh-pages -d dist`
-
-## Notes
-
-- Vite is configured with `base: "/"` in `vite.config.js`.
-- The site includes an image carousel, service tiles, a contact page, and a Leaflet map section.
+Inline `TODO` comments in `src/data/projects.js` mark source-repository conflicts that require owner confirmation, including Hillview’s location wording, legacy Village Gate render labels, the Tswana Fuel placeholder, and Kalahari Arms’ secondary image.

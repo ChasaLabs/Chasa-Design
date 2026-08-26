@@ -24,14 +24,27 @@ import crcChurchImage from "../assets/CRC.jpeg";
 import crcChurchRender1 from "../assets/CRC-RNDR1.jpg";
 import crcChurchRender2 from "../assets/CRC-RNDR2.png";
 
+export const projectFilters = [
+  "All",
+  "Retail / Mixed Use",
+  "Hospitality",
+  "Healthcare",
+  "Sports / Community",
+  "Infrastructure",
+  "Worship / Gathering",
+];
+
 export const projects = [
   {
     id: "hillview-mall",
     title: "Hillview Mall",
+    // TODO: Confirm whether the final location wording should be Gaborone or Mogoditshane.
     location: "Gaborone, Botswana",
     category: "Retail / Mixed-use",
+    filter: "Retail / Mixed Use",
     image: hillviewImage,
     images: [hillviewImage, hillviewRender1, hillviewRender2, hillviewRender3],
+    imageFits: ["cover", "cover", "cover", "cover"],
     objectPosition: "center 60%",
     metadata: "Architecture / Planning / Delivery",
     description:
@@ -42,8 +55,10 @@ export const projects = [
     title: "Travel Lodge",
     location: "Gaborone, Botswana",
     category: "Hospitality",
+    filter: "Hospitality",
     image: travelLodgeImage,
     images: [travelLodgeImage, travelLodgeImage2, travelLodgeImage3],
+    imageFits: ["cover", "cover", "cover"],
     objectPosition: "center",
     metadata: "Architecture / Hospitality Planning / Delivery",
     description:
@@ -54,8 +69,10 @@ export const projects = [
     title: "Kapsabet Referral Hospital",
     location: "Kapsabet, Kenya",
     category: "Healthcare",
+    filter: "Healthcare",
     image: kapsabetImage,
     images: [kapsabetImage, kapsabetRender1, kapsabetRender2],
+    imageFits: ["cover", "contain", "contain"],
     objectPosition: "center",
     metadata: "Healthcare Planning / Coordination / Delivery",
     description:
@@ -66,8 +83,10 @@ export const projects = [
     title: "Motswedi Clinic",
     location: "Motswedi, South Africa",
     category: "Healthcare",
+    filter: "Healthcare",
     image: motswediRender1,
     images: [motswediRender1, motswediRender2, motswediRender3],
+    imageFits: ["cover", "cover", "cover"],
     objectPosition: "center",
     featuredOnHome: false,
     description:
@@ -78,6 +97,7 @@ export const projects = [
     title: "Dinaledi Sports Centre",
     location: "Gaborone, Botswana",
     category: "Sports / Community",
+    filter: "Sports / Community",
     image: dinalediImage,
     images: [dinalediImage, dinalediImage2, dinalediImage3],
     imageFits: ["contain", "contain", "contain"],
@@ -91,8 +111,11 @@ export const projects = [
     title: "Village Gate Mall",
     location: "Molepolole, Botswana",
     category: "Retail / Commercial",
+    filter: "Retail / Mixed Use",
     image: villageGateImage,
+    // TODO: Confirm legacy renders labelled "Molepolole Mall" belong in the final Village Gate archive.
     images: [villageGateImage, villageGateRender1, villageGateRender2],
+    imageFits: ["cover", "contain", "contain"],
     objectPosition: "center",
     metadata: "Retail Planning / Commercial / Delivery",
     description:
@@ -103,8 +126,11 @@ export const projects = [
     title: "Tswana Fuel Truckstop",
     location: "Gaborone, Botswana",
     category: "Service / Infrastructure",
+    filter: "Infrastructure",
+    // TODO: Replace the existing unbranded repository visual with verified project photography if available.
     image: truckstopImage,
     images: [truckstopImage],
+    imageFits: ["cover"],
     objectPosition: "center",
     metadata: "Infrastructure / Movement / Delivery",
     description:
@@ -115,8 +141,11 @@ export const projects = [
     title: "Kalahari Arms Hotel",
     location: "Ghanzi, Botswana",
     category: "Hospitality",
+    filter: "Hospitality",
     image: kalahariArmsImage,
+    // TODO: Confirm the generic gathering render is part of the Kalahari Arms Hotel image set.
     images: [kalahariArmsImage, kalahariArmsGatheringImage],
+    imageFits: ["cover", "cover"],
     objectPosition: "center",
     metadata: "Hospitality / Identity / Delivery",
     description:
@@ -127,6 +156,7 @@ export const projects = [
     title: "CRC Church",
     location: "Gaborone, Botswana",
     category: "Worship / Gathering",
+    filter: "Worship / Gathering",
     image: crcChurchImage,
     images: [crcChurchImage, crcChurchRender1, crcChurchRender2],
     imageFits: ["cover", "contain", "cover"],
@@ -135,4 +165,17 @@ export const projects = [
     description:
       "A contemporary gathering space designed around assembly, light, and shared experience. The project emphasizes scale, openness, and clear thresholds to support worship, community, and collective presence.",
   },
-];
+].map((project, index) => ({
+  ...project,
+  number: String(index + 1).padStart(2, "0"),
+}));
+
+export function getProject(projectId) {
+  return projects.find((project) => project.id === projectId);
+}
+
+export function getNextProject(projectId) {
+  const currentIndex = projects.findIndex((project) => project.id === projectId);
+  if (currentIndex < 0) return projects[0];
+  return projects[(currentIndex + 1) % projects.length];
+}

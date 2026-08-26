@@ -1,108 +1,149 @@
-import { useState, useEffect } from "react";
-import { NavLink } from "react-router-dom";
-import logo from "../assets/Chasa_Logo.svg";
+import { useEffect, useRef, useState } from "react";
+import { NavLink, useLocation } from "react-router-dom";
+import logo from "../assets/Chasa_Logo_Wide.jpeg";
+
+const links = [
+  { to: "/projects", label: "Projects" },
+  { to: "/studio", label: "Studio" },
+  { to: "/labs", label: "Labs" },
+  { to: "/contact", label: "Contact" },
+];
 
 export default function Navbar() {
-  const [isVisible, setIsVisible] = useState(true);
-  const [lastScrollY, setLastScrollY] = useState(0);
-  const hideThreshold = 100;
+  const { pathname } = useLocation();
+  const [scrolled, setScrolled] = useState(false);
+  const [menuOpen, setMenuOpen] = useState(false);
+  const lastScroll = useRef(0);
+  const menuRef = useRef(null);
+  const menuToggleRef = useRef(null);
+  const [hidden, setHidden] = useState(false);
+
+  const overlayRoute =
+    pathname === "/" || pathname === "/labs" || /^\/projects\/.+/.test(pathname);
 
   useEffect(() => {
-    let ticking = false;
+    document.body.classList.toggle("menu-is-open", menuOpen);
+    return () => document.body.classList.remove("menu-is-open");
+  }, [menuOpen]);
 
-    const handleScroll = () => {
-      if (!ticking) {
-        window.requestAnimationFrame(() => {
-          const currentScrollY = window.scrollY;
+  useEffect(() => {
+    if (!menuOpen) return undefined;
 
-          if (currentScrollY < 50) {
-            setIsVisible(true);
-          } else if (currentScrollY > lastScrollY) {
-            if (currentScrollY > hideThreshold) {
-              setIsVisible(false);
-            }
-          } else {
-            setIsVisible(true);
-          }
+    const menuLinks = Array.from(menuRef.current?.querySelectorAll("a[href]") || []);
+    const focusable = [menuToggleRef.current, ...menuLinks].filter(Boolean);
+    menuLinks[0]?.focus();
 
-          setLastScrollY(currentScrollY);
-          ticking = false;
-        });
+    const onKeyDown = (event) => {
+      if (event.key === "Escape") {
+        setMenuOpen(false);
+        requestAnimationFrame(() => menuToggleRef.current?.focus());
+        return;
+      }
 
-        ticking = true;
+      if (event.key !== "Tab" || focusable.length === 0) return;
+      const first = focusable[0];
+      const last = focusable.at(-1);
+      if (event.shiftKey && document.activeElement === first) {
+        event.preventDefault();
+        last.focus();
+      } else if (!event.shiftKey && document.activeElement === last) {
+        event.preventDefault();
+        first.focus();
       }
     };
 
-    window.addEventListener("scroll", handleScroll, { passive: true });
+    window.addEventListener("keydown", onKeyDown);
+    return () => window.removeEventListener("keydown", onKeyDown);
+  }, [menuOpen]);
 
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
+  useEffect(() => {
+    let frame;
+    const onScroll = () => {
+      cancelAnimationFrame(frame);
+      frame = requestAnimationFrame(() => {
+        const current = window.scrollY;
+        setScrolled(current > 24);
+        setHidden(current > 160 && current > lastScroll.current + 4 && !menuOpen);
+        if (current < lastScroll.current - 4 || current < 80) setHidden(false);
+        lastScroll.current = current;
+      });
     };
-  }, [lastScrollY]);
+
+    window.addEventListener("scroll", onScroll, { passive: true });
+    onScroll();
+    return () => {
+      cancelAnimationFrame(frame);
+      window.removeEventListener("scroll", onScroll);
+    };
+  }, [menuOpen]);
+
+  const navClass = [
+    "site-nav",
+    overlayRoute && !scrolled ? "site-nav--overlay" : "site-nav--solid",
+    hidden ? "site-nav--hidden" : "",
+    menuOpen ? "site-nav--menu-open" : "",
+  ]
+    .filter(Boolean)
+    .join(" ");
 
   return (
-    <header
-      className={`fixed left-0 top-0 z-50 w-full bg-slate-950/50 backdrop-blur-sm transition-transform duration-300 ease-out ${
-        isVisible ? "translate-y-0" : "-translate-y-full"
-      }`}
-    >
-      <div className="flex h-20 w-full items-center overflow-x-hidden px-3 sm:px-6">
-        <div className="flex flex-shrink-0 items-center">
-          <NavLink to="/" className="flex items-center">
-            <div className="flex h-[80px] w-[80px] items-center justify-center overflow-hidden rounded-full bg-white/5 p-1">
-              <img src={logo} alt="Chasa logo" className="max-h-[80px] max-w-[80px] object-contain" />
-            </div>
-          </NavLink>
-        </div>
+    <header className={navClass}>
+      <div className="nav-inner">
+        <NavLink to="/" className="brand-mark" aria-label="Chasa Design home" onClick={() => setMenuOpen(false)}>
+          <img src={logo} alt="Chasa Design Architects and Planners" />
+        </NavLink>
 
-        <nav className="ml-auto flex flex-wrap items-center justify-end gap-2 whitespace-nowrap sm:gap-4 md:gap-6">
-          <NavLink
-            to="/projects"
-            className={({ isActive }) =>
-              `inline-flex items-center rounded-full px-2 py-2 text-sm font-semibold tracking-wide sm:px-3 ${
-                isActive ? "text-cyan-300" : "text-slate-100 hover:text-cyan-200"
-              }`
-            }
-          >
-            Projects
-          </NavLink>
-
-          <NavLink
-            to="/about"
-            style={{ marginLeft: "2rem" }}
-            className={({ isActive }) =>
-              `inline-flex items-center rounded-full px-2 py-2 text-sm font-semibold tracking-wide sm:px-3 ${
-                isActive ? "text-cyan-300" : "text-slate-100 hover:text-cyan-200"
-              }`
-            }
-          >
-            About
-          </NavLink>
-
-          <NavLink
-            to="/labs"
-            style={{ marginLeft: "2rem" }}
-            className={({ isActive }) =>
-              `inline-flex items-center rounded-full px-2 py-2 text-sm font-semibold tracking-wide sm:px-3 ${
-                isActive ? "text-cyan-300" : "text-slate-100 hover:text-cyan-200"
-              }`
-            }
-          >
-            Labs
-          </NavLink>
-
-          <NavLink
-            to="/contact"
-            style={{ marginLeft: "2rem" }}
-            className={({ isActive }) =>
-              `inline-flex items-center rounded-full px-2 py-2 text-sm font-semibold tracking-wide sm:px-3 ${
-                isActive ? "text-cyan-300" : "text-slate-100 hover:text-cyan-200"
-              }`
-            }
-          >
-            Contact
+        <nav className="desktop-nav" aria-label="Primary navigation">
+          {links.map((link) => (
+            <NavLink
+              key={link.to}
+              to={link.to}
+              className={({ isActive }) => (isActive ? "nav-link is-active" : "nav-link")}
+            >
+              {link.label}
+            </NavLink>
+          ))}
+          <NavLink to="/contact" className="nav-cta">
+            Start a project <span aria-hidden="true">↗</span>
           </NavLink>
         </nav>
+
+        <button
+          ref={menuToggleRef}
+          className="menu-toggle"
+          type="button"
+          aria-expanded={menuOpen}
+          aria-controls="mobile-navigation"
+          aria-label={menuOpen ? "Close navigation" : "Open navigation"}
+          onClick={() => setMenuOpen((open) => !open)}
+        >
+          <span />
+          <span />
+        </button>
+      </div>
+
+      <div
+        ref={menuRef}
+        id="mobile-navigation"
+        className={`mobile-menu ${menuOpen ? "is-open" : ""}`}
+        aria-hidden={!menuOpen}
+        role="dialog"
+        aria-modal={menuOpen ? "true" : undefined}
+        aria-label="Site navigation"
+      >
+        <div className="mobile-menu-grid" aria-hidden="true" />
+        <nav aria-label="Mobile navigation">
+          {links.map((link, index) => (
+            <NavLink key={link.to} to={link.to} className="mobile-link" onClick={() => setMenuOpen(false)}>
+              <span>{String(index + 1).padStart(2, "0")}</span>
+              {link.label}
+            </NavLink>
+          ))}
+        </nav>
+        <div className="mobile-menu-meta">
+          <span>Gaborone / Botswana</span>
+          <span>24.6° S / 25.9° E</span>
+        </div>
       </div>
     </header>
   );

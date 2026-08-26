@@ -2,32 +2,45 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/chasa-icon.svg" />
+    <link rel="icon" type="image/svg+xml" sizes="any" href="/chasa-icon.svg" />
+    <link rel="shortcut icon" href="/chasa-icon.svg" />
+    <link rel="apple-touch-icon" href="/chasa-icon.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Chasa Design is a Gaborone-based architectural practice working across design, documentation, coordination and project delivery."
+    />
+    <meta name="theme-color" content="#0b0c0e" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap"
+      href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&display=swap"
       rel="stylesheet"
     />
-    <script
-      defer
-      src="https://static.cloudflareinsights.com/beacon.min.js"
-      data-cf-beacon='{"token":"1dcda4816ebf424690a2266330ee1e70"}'
-    ></script>
-    <title>Chasa Design</title>
+    <title>Chasa Design — Architecture, Design &amp; Delivery</title>
   </head>
   <body>
+    <script>
+      (function () {
+        var redirect = new URLSearchParams(window.location.search).get("path");
+        if (redirect) {
+          window.history.replaceState(null, "", redirect);
+        }
+      })();
+    </script>
+    <a class="skip-link" href="#main-content">Skip to content</a>
     <div id="root"></div>
     <script type="module" src="/src/main.jsx"></script>
 
-    <!-- Replace token with the real Cloudflare Web Analytics token before deploying. -->
-    <!-- Cloudflare Web Analytics -->
-    <script
-      defer
-      src="https://static.cloudflareinsights.com/beacon.min.js"
-      data-cf-beacon='{"token": "REPLACE_WITH_CLOUDFLARE_TOKEN"}'
-    ></script>
-    <!-- End Cloudflare Web Analytics -->
+    <!-- Existing Cloudflare Web Analytics configuration retained for the live domain. -->
+    <script>
+      if (window.location.hostname === "www.chasadesign.com" || window.location.hostname === "chasadesign.com") {
+        var analytics = document.createElement("script");
+        analytics.defer = true;
+        analytics.src = "https://static.cloudflareinsights.com/beacon.min.js";
+        analytics.dataset.cfBeacon = '{"token": "1dcda4816ebf424690a2266330ee1e70"}';
+        document.body.appendChild(analytics);
+      }
+    </script>
   </body>
 </html>
